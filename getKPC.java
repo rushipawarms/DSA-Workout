@@ -14,3 +14,49 @@
 // Use sample input and output to take idea about output.
 
 // Note -> The online judge can't force you to write the function recursively but that is what the spirit of question is. Write recursive and not iterative logic. The purpose of the question is to aid learning recursion and not test you.
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static String[] codes = {".;", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz"};
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn=new Scanner(System.in);
+        String str=scn.next();
+        ArrayList<String> ans=getKPC(str);
+        System.out.print(ans);
+    }
+
+    public static ArrayList<String> getKPC(String str) {
+        
+        if(str.length()==0)
+        {
+            ArrayList<String> an=new ArrayList<>();
+            an.add("");
+            return an;
+        }
+        ArrayList<String> sans=getKPC(str.substring(1));
+        
+        ArrayList<String> ans=new ArrayList<>();
+        
+        char F_char=str.charAt(0);
+         
+         int idx=Integer.parseInt(F_char+"");
+         
+         String key=codes[idx];
+         
+         for(int i=0;i<key.length();i++)
+         {
+             char ch=key.charAt(i);
+             for(int j=0;j<sans.size();j++)
+             {
+                 String st=ch+sans.get(j);
+                 ans.add(st);
+             }
+         }
+        
+    return ans;
+}
+}
